@@ -10,6 +10,8 @@ extents = Vector2( 39.4454, 40.4708 )
 
 [node name="Player" instance=ExtResource( 1 )]
 rotation = 0.00163316
+collision_layer = 2
+collision_mask = 7
 script = ExtResource( 2 )
 speed = 200
 rotation_speed = 2.0
