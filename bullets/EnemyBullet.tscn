@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://bullets/Bullet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://bullets/EnemyBullet.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+extents = Vector2( 11.3434, 7.07558 )
+
+[node name="EnemyBullet" instance=ExtResource( 1 )]
+collision_mask = 3
+script = ExtResource( 2 )
+move_speed = 500.0
+lift_time = 1.5
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+region_rect = Rect2( 368, 492, 22, 14 )
+
+[node name="Lifttime" parent="." index="2"]
+wait_time = 1.0
+
