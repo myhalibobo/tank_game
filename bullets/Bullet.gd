@@ -3,6 +3,7 @@ extends Area2D
 var velocity = Vector2() 
 export (float) var move_speed = 200
 export (float) var lift_time = 2
+export (float) var damage = 10
 
 func _ready():
 	$Lifttime.wait_time = lift_time
@@ -19,6 +20,6 @@ func _on_Lifttime_timeout():
 	queue_free()
 
 func _on_Bullet_body_entered(body):
-	if body.has_method("damage_take"):
-		body.damage_take()
+	if body.has_method("take_damage"):
+		body.take_damage(damage)
 	queue_free()

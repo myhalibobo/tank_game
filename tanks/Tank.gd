@@ -6,7 +6,6 @@ signal health_changed
 signal dead
 signal shoot
 
-
 export (PackedScene) var Bullet
 
 export (int) var speed
@@ -21,6 +20,7 @@ var alive = true
 func _ready():
 	print(name)
 	$GunTimer.wait_time = gun_cooldown
+	emit_signal("health_changed",health)
 	
 func shoot():
 	if can_shoot:
@@ -39,6 +39,17 @@ func _physics_process(delta):
 		return
 	control(delta)
 	move_and_slide(velocity)
+
+func explode():
+	queue_free()
+
+func take_damage(value):
+	health -= value
+	if health < 0:
+		health = 0
+	emit_signal("health_changed",health)
+	if health <= 0:
+		explode()
 
 func _on_GunTimer_timeout():
 	can_shoot = true

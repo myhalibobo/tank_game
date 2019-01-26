@@ -17,10 +17,8 @@ func control(delta):
 	if parent is PathFollow2D:
 		if $LookAhead1.is_colliding() or $LookAhead2.is_colliding():
 			speed = lerp(speed , 0 , 0.05)
-			print("a:" , speed)
 		else:
 			speed = lerp(speed , max_speed , 0.05)
-			print("b:" , speed)
 		parent.set_offset(parent.get_offset() + speed * delta)
 		position = Vector2()
 	pass
