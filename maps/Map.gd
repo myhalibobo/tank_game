@@ -1,6 +1,7 @@
 extends Node2D
 
 func _ready():
+	Input.set_custom_mouse_cursor(load("res://assets/UI/crossair_white.png"),Input.CURSOR_ARROW,Vector2(16,16))
 	set_camera_limits()
 	
 func set_camera_limits():

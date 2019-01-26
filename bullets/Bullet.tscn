@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://bullets/Bullet.gd" type="Script" id=1]
 [ext_resource path="res://assets/onlyObjects_retina_rotated.png" type="Texture" id=2]
+[ext_resource path="res://effect/Explosions.tscn" type="PackedScene" id=3]
 
 [node name="Bullet" type="Area2D"]
 collision_layer = 8
@@ -17,7 +18,10 @@ region_rect = Rect2( 368, 444, 24, 14 )
 
 [node name="Lifttime" type="Timer" parent="."]
 wait_time = 2.0
-autostart = true
+
+[node name="Explosions" parent="." instance=ExtResource( 3 )]
+visible = false
 
 [connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
 [connection signal="timeout" from="Lifttime" to="." method="_on_Lifttime_timeout"]
+[connection signal="animation_finished" from="Explosions" to="." method="_on_Explosions_animation_finished"]

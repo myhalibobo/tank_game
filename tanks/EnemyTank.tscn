@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://tanks/Tank.tscn" type="PackedScene" id=1]
 [ext_resource path="res://tanks/EnemyTank.gd" type="Script" id=2]
 [ext_resource path="res://bullets/EnemyBullet.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/onlyObjects_retina_rotated.png" type="Texture" id=4]
+[ext_resource path="res://ui/UnitDisplayer.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -56,5 +57,8 @@ enabled = true
 cast_to = Vector2( 80, 0 )
 collision_mask = 2
 
+[node name="UnitDisplayer" parent="." index="7" instance=ExtResource( 5 )]
+
+[connection signal="health_changed" from="." to="UnitDisplayer" method="update_BloodProgress"]
 [connection signal="body_entered" from="Area2D_DetectRadiuls" to="." method="_on_Area2D_DetectRadiuls_body_entered"]
 [connection signal="body_exited" from="Area2D_DetectRadiuls" to="." method="_on_Area2D_DetectRadiuls_body_exited"]

@@ -16,11 +16,8 @@ _global_script_class_icons={
 [application]
 
 config/name="tank_game"
+run/main_scene="res://maps/Map01.tscn"
 config/icon="res://icon.png"
-
-[editor_plugins]
-
-enabled=PoolStringArray( "zylann.editor_debugger" )
 
 [input]
 
