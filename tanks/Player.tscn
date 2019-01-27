@@ -51,7 +51,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[node name="Player" index="0" instance=ExtResource( 1 )]
+[node name="Player" instance=ExtResource( 1 )]
 rotation = 0.00163316
 collision_layer = 2
 collision_mask = 7
@@ -60,7 +60,7 @@ Bullet = ExtResource( 3 )
 speed = 100
 rotation_speed = 1.0
 gun_cooldown = 0.5
-health = 100
+health = 10000
 
 [node name="Body" parent="." index="0"]
 texture = ExtResource( 4 )

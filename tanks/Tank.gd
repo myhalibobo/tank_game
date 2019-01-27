@@ -8,10 +8,14 @@ signal shoot
 
 export (PackedScene) var Bullet
 
-export (int) var speed
-export (float) var rotation_speed
-export (float) var gun_cooldown
-export (int) var health
+export (int) var speed = 0
+export (float) var rotation_speed = 1
+export (float) var gun_cooldown = 1
+export (int) var max_health = 100
+export (float, 0, 1.5) var gun_spread = 0.2
+
+
+var health
 
 var velocity = Vector2()
 var can_shoot = true
@@ -20,15 +24,21 @@ var alive = true
 func _ready():
 	print(name)
 	$GunTimer.wait_time = gun_cooldown
-	emit_signal("health_changed",health)
+	health = max_health
+	emit_signal("health_changed",health * 100/max_health)
 	
-func shoot():
+func shoot(target=null , num=1 , separate=0):
 	if can_shoot:
 		can_shoot = false
 		$GunTimer.start()
-		
 		var dir = Vector2(1,0).rotated($Turret.global_rotation)
-		emit_signal("shoot",Bullet,dir,$Turret/Muzzle.global_position)
+		if num > 1:
+			for i in range(num):
+				var a = -separate + (2*separate)/(num-1) * i
+#				var a = -separate i * (2*separate)/(num-1)
+				emit_signal("shoot",Bullet,dir.rotated(a),$Turret/Muzzle.global_position,target)
+		else:
+			emit_signal("shoot",Bullet,dir ,$Turret/Muzzle.global_position, target)
 		$AnimationPlayer.play('muzzle_flash')
 	pass
 
@@ -48,12 +58,17 @@ func explode():
 	$Explosions.show()
 	$Explosions.play("explosion")
 
+func heal(value):
+	health += value
+	clamp(health,0,max_health)
+	emit_signal("health_changed",health * 100/max_health)
+
 func take_damage(value):
 	health -= value
-	if health < 0:
-		health = 0
-	emit_signal("health_changed",health)
-	if health <= 0:
+	clamp(health,0,max_health)
+	print(health * 100/max_health)
+	emit_signal("health_changed",health * 100/max_health)
+	if health == 0:
 		explode()
 
 func _on_GunTimer_timeout():

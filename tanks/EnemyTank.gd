@@ -29,7 +29,7 @@ func _process(delta):
 		var target_dir :Vector2= (detected_tank.global_position - global_position).normalized()
 		$Turret.global_rotation = cur_direction.linear_interpolate(target_dir,turret_speed * delta).angle()
 		if cur_direction.dot(target_dir) > 0.9:
-			shoot()
+			shoot(detected_tank,3,gun_spread)
 	pass
 
 func _on_Area2D_DetectRadiuls_body_entered(body):
