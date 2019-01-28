@@ -1,13 +1,12 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://maps/Map.gd" type="Script" id=1]
 [ext_resource path="res://terrain/terrain_tiles.tres" type="TileSet" id=2]
 [ext_resource path="res://tanks/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://tanks/EnemyTank.tscn" type="PackedScene" id=4]
-[ext_resource path="res://bullets/Missile.tscn" type="PackedScene" id=5]
-[ext_resource path="res://ui/HUD.tscn" type="PackedScene" id=6]
-[ext_resource path="res://environment/Obstacle.tscn" type="PackedScene" id=7]
-[ext_resource path="res://items/PickUp.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ui/HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://environment/Obstacle.tscn" type="PackedScene" id=6]
+[ext_resource path="res://items/PickUp.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -45,60 +44,63 @@ rotation = 1.57126
 scale = Vector2( 1.00016, 1 )
 
 [node name="EnemyTank" parent="Node2D/Path2D/PathFollow2D" instance=ExtResource( 4 )]
-Bullet = ExtResource( 5 )
-rotation_speed = 5.0
-gun_spread = 0.831
-detect_radius = 500
-turret_speed = 5.0
 
-[node name="HUD" parent="." instance=ExtResource( 6 )]
+[node name="HUD" parent="." instance=ExtResource( 5 )]
 
 [node name="ObstacleNode" type="Node2D" parent="."]
 editor/display_folded = true
 
-[node name="Obstacle" parent="ObstacleNode" instance=ExtResource( 7 )]
+[node name="Obstacle" parent="ObstacleNode" instance=ExtResource( 6 )]
 position = Vector2( 1722.95, 1915.49 )
 rotation = -1.09699
 type = 10
 
-[node name="Obstacle3" parent="ObstacleNode" instance=ExtResource( 7 )]
+[node name="Obstacle3" parent="ObstacleNode" instance=ExtResource( 6 )]
 position = Vector2( 3477.52, 1729.13 )
 rotation = -1.09699
 type = 9
 
-[node name="Obstacle4" parent="ObstacleNode" instance=ExtResource( 7 )]
+[node name="Obstacle4" parent="ObstacleNode" instance=ExtResource( 6 )]
 position = Vector2( 3243.5, 872.558 )
 rotation = -1.09699
 type = 13
 
-[node name="Obstacle5" parent="ObstacleNode" instance=ExtResource( 7 )]
+[node name="Obstacle5" parent="ObstacleNode" instance=ExtResource( 6 )]
 position = Vector2( 3954.66, 852.11 )
 rotation = -1.09699
 type = 4
 
-[node name="Obstacle6" parent="ObstacleNode" instance=ExtResource( 7 )]
+[node name="Obstacle6" parent="ObstacleNode" instance=ExtResource( 6 )]
 position = Vector2( 3818.33, 1263.35 )
 rotation = -1.09699
 type = 17
 
-[node name="Obstacle7" parent="ObstacleNode" instance=ExtResource( 7 )]
+[node name="Obstacle7" parent="ObstacleNode" instance=ExtResource( 6 )]
 position = Vector2( 2993.57, 1251.99 )
 rotation = -1.09699
 type = 8
 
-[node name="Obstacle2" parent="ObstacleNode" instance=ExtResource( 7 )]
+[node name="Obstacle2" parent="ObstacleNode" instance=ExtResource( 6 )]
 position = Vector2( 2303.35, 1569.16 )
 type = 18
 
-[node name="Obstacle8" parent="ObstacleNode" instance=ExtResource( 7 )]
+[node name="Obstacle8" parent="ObstacleNode" instance=ExtResource( 6 )]
 position = Vector2( 2571.46, 1214.71 )
 type = 18
 
 [node name="Items" type="Node2D" parent="."]
 
-[node name="PickUp" parent="Items" instance=ExtResource( 8 )]
-position = Vector2( 2600.93, 1448.91 )
+[node name="PickUp" parent="Items" instance=ExtResource( 7 )]
+position = Vector2( 2005.25, 1599.95 )
+type = 1
 
+[node name="PickUp2" parent="Items" instance=ExtResource( 7 )]
+position = Vector2( 2276.57, 1345.21 )
+
+[node name="PickUp3" parent="Items" instance=ExtResource( 7 )]
+position = Vector2( 2110.76, 1390.43 )
+
+[connection signal="bullet_changed" from="Player" to="HUD" method="update_AmmoProgress"]
 [connection signal="health_changed" from="Player" to="HUD" method="update_BloodProgress"]
 [connection signal="shoot" from="Player" to="." method="_on_Tank_shoot"]
 [connection signal="shoot" from="Node2D/Path2D/PathFollow2D/EnemyTank" to="." method="_on_Tank_shoot"]

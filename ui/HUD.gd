@@ -14,3 +14,7 @@ func update_BloodProgress(value):
 		$MarginContainer/HBoxContainer/BloodProgress.texture_progress = yellow_texture
 	$Tween.interpolate_property($MarginContainer/HBoxContainer/BloodProgress,"value",$MarginContainer/HBoxContainer/BloodProgress.value,value,0.5,Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
 	$Tween.start()
+
+func update_AmmoProgress(value):
+	$Tween.interpolate_property($MarginContainer/HBoxContainer/AmmoProgress,"value",$MarginContainer/HBoxContainer/AmmoProgress.value,value,0.5,Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
+	$Tween.start()

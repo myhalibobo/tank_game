@@ -17,3 +17,6 @@ func _on_Tank_shoot(Bullet,dir,_position,target):
 	var bullet = Bullet.instance()
 	bullet.start(_position,dir,target)
 	add_child(bullet)
+
+func _on_Player_bullet_changed():
+	pass # Replace with function body.

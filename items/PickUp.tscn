@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/onlyObjects_retina_rotated.png" type="Texture" id=3]
 [ext_resource path="res://assets/effects/wrench_white.png" type="Texture" id=4]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=1]
 
 radius = 27.6657
 
@@ -80,21 +80,21 @@ collision_mask = 6
 script = ExtResource( 1 )
 
 [node name="shadow_circle" type="Sprite" parent="."]
-self_modulate = Color( 1, 1, 1, 0.919265 )
+self_modulate = Color( 1, 1, 1, 0.97888 )
 show_behind_parent = true
 position = Vector2( 0, 28.821 )
 scale = Vector2( 0.35, 0.25 )
 texture = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -0.379167 )
+position = Vector2( 0, -0.0456886 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 420, 134, 55, 56 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1, -1 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "ani"
@@ -102,9 +102,9 @@ anims/ani = SubResource( 2 )
 
 [node name="wrench_white" type="Sprite" parent="."]
 modulate = Color( 0.0352941, 0.952941, 0.113725, 1 )
-self_modulate = Color( 1, 1, 1, 0.889428 )
+self_modulate = Color( 1, 1, 1, 0.971075 )
 position = Vector2( 0.122009, -82.5974 )
-scale = Vector2( 0.481352, 0.481352 )
+scale = Vector2( 0.254878, 0.254878 )
 texture = ExtResource( 4 )
 
 [connection signal="body_entered" from="." to="." method="_on_PickUp_body_entered"]
